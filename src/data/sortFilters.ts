@@ -37,22 +37,6 @@ export const sortFilters: { [key: string]: ISortFilter } = {
                     igosSortedByDate.indexOf(b.slug)
             ),
     },
-    athRoiDesc: {
-        label: 'Highest ATH ROI',
-        function: (items: CoinData[]) =>
-            sortWithMarketData(
-                items,
-                (a, b) => b.athPrice / b.idoPrice - a.athPrice / a.idoPrice
-            ),
-    },
-    athRoiAsc: {
-        label: 'Lowest ATH ROI',
-        function: (items: CoinData[]) =>
-            sortWithMarketData(
-                items,
-                (a, b) => a.athPrice / a.idoPrice - b.athPrice / b.idoPrice
-            ),
-    },
     currentRoiDesc: {
         label: 'Highest current ROI',
         function: (items: CoinData[]) =>
@@ -69,6 +53,22 @@ export const sortFilters: { [key: string]: ISortFilter } = {
                 items,
                 (a, b) =>
                     a.currentPrice / a.idoPrice - b.currentPrice / b.idoPrice
+            ),
+    },
+    athRoiDesc: {
+        label: 'Highest ATH ROI',
+        function: (items: CoinData[]) =>
+            sortWithMarketData(
+                items,
+                (a, b) => b.athPrice / b.idoPrice - a.athPrice / a.idoPrice
+            ),
+    },
+    athRoiAsc: {
+        label: 'Lowest ATH ROI',
+        function: (items: CoinData[]) =>
+            sortWithMarketData(
+                items,
+                (a, b) => a.athPrice / a.idoPrice - b.athPrice / b.idoPrice
             ),
     },
 }
