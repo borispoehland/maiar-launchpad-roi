@@ -1,28 +1,27 @@
-import { CoinData, CoinMeta } from '../components/TableItem'
 import axios from 'axios'
-import coins from './coins.json'
+import coins from '../data/coins.json'
 import { getFakeCoinData, getFakeCoinMeta } from './getFakeResponse'
 
-const parseSingleCoinData = (coinData: any): CoinData => {
-    return {
-        slug: coinData.slug,
-        currentPrice: coinData.periods.all_time.quote.USD.close,
-        athPrice: coinData.periods.all_time.quote.USD.high,
-    }
+interface CoinMarketData {
+    slug: string
+    currentPrice?: number
+    athPrice?: number
 }
 
-const parseSingleCoinMeta = (coinMeta: any): CoinMeta => {
-    return {
-        slug: coinMeta.slug,
-        name: coinMeta.name,
-        idoPrice: coins[coinMeta.slug as keyof typeof coins],
-        ticker: coinMeta.symbol,
-        explorerUrl: coinMeta.urls?.explorer?.[0] ?? null,
-        logoUrl: coinMeta.logo ?? null,
-    }
+interface CoinMetaData {
+    name: string
+    ticker: string
+    idoPrice: number
+    slug: string
+    logoUrl: string
+    explorerUrl: string
+    chain: string
+    contractAddress: string
 }
 
-export const fetchCoinData = async (): Promise<CoinData[] | undefined> => {
+export interface CoinData extends CoinMarketData, CoinMetaData {}
+
+const fetchCoinMarketData = async (): Promise<CoinMarketData[] | undefined> => {
     let response
     const headers = {
         'X-CMC_PRO_API_KEY': String(process.env.CMC_API_KEY),
@@ -44,13 +43,21 @@ export const fetchCoinData = async (): Promise<CoinData[] | undefined> => {
                 }
             )
 
-        return Object.values(response.data.data).map(parseSingleCoinData)
+        return Object.values(response.data.data).map(
+            (coinData: any): CoinMarketData => {
+                return {
+                    slug: coinData.slug,
+                    currentPrice: coinData.periods.all_time.quote.USD.close,
+                    athPrice: coinData.periods.all_time.quote.USD.high,
+                }
+            }
+        )
     } catch (error) {
         console.error(error)
     }
 }
 
-export const fetchCoinMeta = async (): Promise<CoinMeta[] | undefined> => {
+const fetchCoinMetaData = async (): Promise<CoinMetaData[] | undefined> => {
     let response
     const headers = {
         'X-CMC_PRO_API_KEY': String(process.env.CMC_API_KEY),
@@ -71,8 +78,34 @@ export const fetchCoinMeta = async (): Promise<CoinMeta[] | undefined> => {
                 }
             )
 
-        return Object.values(response.data.data).map(parseSingleCoinMeta)
+        return Object.values(response.data.data).map(
+            (coinMeta: any): CoinMetaData => {
+                return {
+                    slug: coinMeta.slug,
+                    name: coinMeta.name,
+                    idoPrice: coins[coinMeta.slug as keyof typeof coins],
+                    ticker: coinMeta.symbol,
+                    chain: coinMeta?.platform?.slug ?? null,
+                    contractAddress: coinMeta?.platform?.token_address ?? null,
+                    explorerUrl: coinMeta.urls?.explorer?.[0] ?? null,
+                    logoUrl: coinMeta.logo ?? null,
+                }
+            }
+        )
     } catch (error) {
         console.error(error)
     }
+}
+
+/*
+    Merges meta data and market data
+*/
+export const fetchCoinData = async (): Promise<CoinData[] | undefined> => {
+    const meta = await fetchCoinMetaData()
+    const data = await fetchCoinMarketData()
+
+    return meta?.map((t1) => ({
+        ...t1,
+        ...data?.find((t2) => t2.slug === t1.slug),
+    }))
 }

@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
     content: [
         './pages/**/*.{js,ts,jsx,tsx}',
@@ -10,6 +13,18 @@ module.exports = {
                 'h-gray': '#777b8f',
             },
         },
+        fontFamily: {
+            custom: ['Nunito', ...defaultTheme.fontFamily['sans']],
+        },
     },
-    plugins: [],
+    plugins: [require('daisyui')],
+    daisyui: {
+        themes: [
+            {
+                hodlers: {
+                    success: '#1dcd59',
+                },
+            },
+        ],
+    },
 }

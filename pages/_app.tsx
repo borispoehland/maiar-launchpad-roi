@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { useEffect } from 'react'
 
-function MyApp({ Component, pageProps }: AppProps) {
+const useIFrameResize = () => {
     useEffect(() => {
         function iframeResize() {
             const body = document.body,
@@ -15,14 +15,17 @@ function MyApp({ Component, pageProps }: AppProps) {
                 html.scrollHeight,
                 html.offsetHeight
             )
-
             parent.postMessage('resize::' + height, '*')
         }
 
         // Resize iframe
         iframeResize()
-        setInterval(iframeResize, 1000)
+        setInterval(iframeResize, 2000)
     }, [])
+}
+
+function MyApp({ Component, pageProps }: AppProps) {
+    useIFrameResize()
     return <Component {...pageProps} />
 }
 
