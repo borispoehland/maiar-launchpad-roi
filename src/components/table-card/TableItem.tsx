@@ -9,9 +9,16 @@ interface IProps extends CoinData {
 
 const CMC_BASE_URL = 'https://coinmarketcap.com/currencies/'
 
-const trimNumber = (num: number): string => {
+const trimNumber = (num: number): number => {
+    const toFixed = (num: number, precision: number) => {
+        return (+(
+            Math.round(+(num + 'e' + precision)) +
+            'e' +
+            -precision
+        )).toFixed(precision)
+    }
     const trailingZeros = -Math.floor(Math.log(num) / Math.log(10) + 1)
-    return num.toFixed(trailingZeros > 0 ? trailingZeros + 2 : 2)
+    return +toFixed(num, trailingZeros > 0 ? trailingZeros + 2 : 2)
 }
 
 const TableItem = ({

@@ -32,7 +32,7 @@ const fetchCoinMarketData = async (): Promise<CoinMarketData[] | undefined> => {
         skip_invalid: true,
     }
     try {
-        if (process.env.NODE_ENV === 'development') {
+        if ((process.env.APP_ENV ?? process.env.NODE_ENV) === 'development') {
             response = getFakeCoinData()
         } else
             response = await axios.get(
@@ -67,7 +67,7 @@ const fetchCoinMetaData = async (): Promise<CoinMetaData[] | undefined> => {
         slug: Object.keys(coins).join(','),
     }
     try {
-        if (process.env.NODE_ENV === 'development') {
+        if ((process.env.APP_ENV ?? process.env.NODE_ENV) === 'development') {
             response = getFakeCoinMeta()
         } else
             response = await axios.get(
