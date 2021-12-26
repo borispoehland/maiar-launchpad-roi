@@ -10,13 +10,8 @@ interface IProps extends CoinData {
 const CMC_BASE_URL = 'https://coinmarketcap.com/currencies/'
 
 const trimNumber = (num: number): string => {
-    // if negative, that means the number is >= 1 (e.g. 1.05)
-    // if 0, that means the number has no trailing zeros, but a leading one (e.g. 0.13)
-    // if positive, that means the number has trailing zeros (e.g. 0.0025)
     const trailingZeros = -Math.floor(Math.log(num) / Math.log(10) + 1)
-    return num.toFixed(
-        trailingZeros >= 0 ? (trailingZeros === 0 ? 3 : trailingZeros + 2) : 2
-    )
+    return num.toFixed(trailingZeros > 0 ? trailingZeros + 2 : 2)
 }
 
 const TableItem = ({
