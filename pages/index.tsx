@@ -66,11 +66,11 @@ const Home = ({ coinData, currentAvgRoi, athAvgRoi, igosCount }: IProps) => {
                     <div className="xl:col-span-2 grid md:grid-cols-3 md:justify-items-center xl:justify-items-start">
                         <Metric
                             label="Current AVG ROI"
-                            value={`${currentAvgRoi.toFixed(2)}x`}
+                            value={`${currentAvgRoi?.toFixed(2)}x`}
                         />
                         <Metric
                             label="ATH AVG ROI"
-                            value={`${athAvgRoi.toFixed(2)}x`}
+                            value={`${athAvgRoi?.toFixed(2)}x`}
                         />
                         <Metric
                             label="IGOs held"
