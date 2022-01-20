@@ -26,5 +26,6 @@ export const getExplorers = (
         avalanche: {
             logoPathName: 'snowtrace_logo.png',
             explorerUrl: `https://snowtrace.io/token/${contractAddress}`,
+        },
     }
 }
