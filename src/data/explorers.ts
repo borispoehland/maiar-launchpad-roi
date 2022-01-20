@@ -15,7 +15,7 @@ export const getExplorers = (
             logoPathName: 'polygonscan_logo.webp',
             explorerUrl: `https://polygonscan.com/token/${contractAddress}`,
         },
-        'binance-coin': {
+        'bnb': {
             logoPathName: 'bscscan_logo.webp',
             explorerUrl: `https://bscscan.com/token/${contractAddress}`,
         },
@@ -23,5 +23,8 @@ export const getExplorers = (
             logoPathName: 'solscan_logo.png',
             explorerUrl: `https://solscan.io/token/${contractAddress}`,
         },
+        avalanche: {
+            logoPathName: 'snowtrace_logo.png',
+            explorerUrl: `https://snowtrace.io/token/${contractAddress}`,
     }
 }
