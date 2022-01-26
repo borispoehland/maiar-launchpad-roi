@@ -106,8 +106,9 @@ export const getStaticProps: GetStaticProps<IProps> = async ({ params }) => {
     ): number => {
         return (
             (coinData?.reduce((acc, curr) => {
-                if (curr[property])
+                if (curr[property]) {
                     return acc + (curr[property] as number) / curr.idoPrice
+                }
                 return acc
             }, 0) as number) /
             (coinData?.filter((igo) => igo[property]) as CoinData[])?.length
