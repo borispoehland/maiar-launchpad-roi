@@ -1,1 +1,1 @@
-💸 Track the Return on Investment (ROI) on your favorite gaming projects launched via Seedify!
+💸 Return-On-Investment (ROI) tracker of the Seedify launchpad
