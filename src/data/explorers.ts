@@ -27,5 +27,9 @@ export const getExplorers = (
             logoPathName: 'snowtrace_logo.png',
             explorerUrl: `https://snowtrace.io/token/${contractAddress}`,
         },
+        fantom: {
+            logoPathName: 'ftmscan_logo.png',
+            explorerUrl: `https://ftmscan.com/token/${contractAddress}`,
+        },
     }
 }
