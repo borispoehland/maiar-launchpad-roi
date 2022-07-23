@@ -57,7 +57,7 @@ const TableItem = ({
                         </div>
                     )}
                     <a
-                        href={`${CMC_BASE_URL}/${slug}`}
+                        href={`${CMC_BASE_URL}${slug}`}
                         target="_blank"
                         className="flex"
                         rel="noreferrer"
