@@ -11,7 +11,7 @@
 
 html,
 body {
-  @apply bg-transparent font-custom;
+  @apply bg-gray-900 font-custom;
 }
 
 a {

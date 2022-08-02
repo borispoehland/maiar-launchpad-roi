@@ -10,7 +10,6 @@ module.exports = {
         extend: {
             colors: {
                 'h-green': '#1dcd59',
-                'h-gray': '#777b8f',
             },
         },
         fontFamily: {
@@ -21,7 +20,7 @@ module.exports = {
     daisyui: {
         themes: [
             {
-                hodlers: {
+                maiar: {
                     success: '#1dcd59',
                 },
             },

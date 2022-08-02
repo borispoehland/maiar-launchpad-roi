@@ -15,7 +15,7 @@ export const getExplorers = (
             logoPathName: 'polygonscan_logo.webp',
             explorerUrl: `https://polygonscan.com/token/${contractAddress}`,
         },
-        'bnb': {
+        bnb: {
             logoPathName: 'bscscan_logo.webp',
             explorerUrl: `https://bscscan.com/token/${contractAddress}`,
         },
@@ -30,6 +30,10 @@ export const getExplorers = (
         fantom: {
             logoPathName: 'ftmscan_logo.png',
             explorerUrl: `https://ftmscan.com/token/${contractAddress}`,
+        },
+        'elrond-egld': {
+            logoPathName: 'elrondexplorer_logo.png',
+            explorerUrl: `https://explorer.elrond.com/token/${contractAddress}`,
         },
     }
 }

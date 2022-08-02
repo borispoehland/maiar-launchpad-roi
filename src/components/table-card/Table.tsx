@@ -14,7 +14,7 @@ const Table = ({ data, setSearchValue }: IProps): JSX.Element => {
                 <thead>
                     <tr className="text-left whitespace-nowrap">
                         <th className="bg-slate-700">Name</th>
-                        <th>IGO price</th>
+                        <th>IDO price</th>
                         <th>Current price</th>
                         <th>Current ROI</th>
                         <th>ATH price</th>

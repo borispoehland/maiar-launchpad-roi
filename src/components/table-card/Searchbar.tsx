@@ -17,7 +17,7 @@ const Searchbar = ({ setState, state }: IProps): JSX.Element => {
                     className="input input-bordered input-success bg-white h-10 px-5 pr-8 rounded text-sm focus:outline-none"
                     type="search"
                     name="search"
-                    placeholder={'e.g. "Bloktopia"'}
+                    placeholder={'e.g. "holoride"'}
                     value={state}
                     onChange={(e) =>
                         setState(e.target.value.trim().toLowerCase())

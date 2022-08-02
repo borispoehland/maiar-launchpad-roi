@@ -31,7 +31,7 @@ const Home = ({ coinData, currentAvgRoi, athAvgRoi, igosCount }: IProps) => {
             <Card className="text-center">
                 <span className="text-red-500">Error</span> fetching the data.
                 Please{' '}
-                <a href="https://t.me/boris0crypto" target="__blank">
+                <a href="https://twitter.com/boris0crypto" target="__blank">
                     contact the developer
                 </a>{' '}
                 of this tool. Thanks!
@@ -48,56 +48,64 @@ const Home = ({ coinData, currentAvgRoi, athAvgRoi, igosCount }: IProps) => {
     const filteredAndSortedData = sortFilter.function(filteredData)
 
     return (
-        <div className="flex flex-col gap-4 md:gap-8 mt-4 md:mt-8 max-w-[100rem] mx-auto">
-            <Card>
-                <div className="flex gap-2 items-center mb-4">
-                    <Image
-                        src="/img/seedify_logo.jpg"
-                        width="50"
-                        height="50"
-                        className="rounded-full"
-                        alt="Seedify Logo"
+        <div className="container mx-auto">
+            <div className="flex flex-col gap-4 md:gap-8 m-4 md:mt-8">
+                <Card>
+                    <div className="flex gap-2 items-center mb-4">
+                        <Image
+                            src="/img/explorer-logos/elrondexplorer_logo.png"
+                            width="50"
+                            height="50"
+                            className="rounded-full"
+                            alt="Elrond Logo"
+                        />
+                        <h1 className="text-3xl md:text-4xl">
+                            Maiar Launchpad ROI Tracker
+                        </h1>
+                    </div>
+                    <div className="grid items-end xl:grid-cols-3 gap-6 xl:gap-0">
+                        <div className="xl:col-span-2 grid md:grid-cols-3 md:justify-items-center xl:justify-items-start">
+                            <Metric
+                                label="Current AVG ROI"
+                                value={`${currentAvgRoi?.toFixed(2)}x`}
+                            />
+                            <Metric
+                                label="ATH AVG ROI"
+                                value={`${athAvgRoi?.toFixed(2)}x`}
+                            />
+                            <Metric
+                                label="IDOs held"
+                                value={igosCount.toString()}
+                            />
+                        </div>
+                        <div className="xl:col-span-1 overflow-hidden">
+                            <Intro />
+                        </div>
+                    </div>
+                </Card>
+                <Card className="overflow-x-auto">
+                    <div className="flex flex-col gap-3 items-start sm:flex-row sm:justify-end sm:items-center pb-4">
+                        <Searchbar
+                            setState={setSearchValue}
+                            state={searchValue}
+                        />
+                        <SortDropdown
+                            state={sortFilter}
+                            setState={setSortFilter}
+                        />
+                    </div>
+                    <Table
+                        data={filteredAndSortedData}
+                        setSearchValue={setSearchValue}
                     />
-                    <h1 className="text-3xl md:text-4xl">
-                        Seedify ROI Tracker
-                    </h1>
-                </div>
-                <div className="grid items-end xl:grid-cols-3 gap-6 xl:gap-0">
-                    <div className="xl:col-span-2 grid md:grid-cols-3 md:justify-items-center xl:justify-items-start">
-                        <Metric
-                            label="Current AVG ROI"
-                            value={`${currentAvgRoi?.toFixed(2)}x`}
-                        />
-                        <Metric
-                            label="ATH AVG ROI"
-                            value={`${athAvgRoi?.toFixed(2)}x`}
-                        />
-                        <Metric
-                            label="IGOs held"
-                            value={igosCount.toString()}
-                        />
-                    </div>
-                    <div className="xl:col-span-1 overflow-hidden">
-                        <Intro />
-                    </div>
-                </div>
-            </Card>
-            <Card className="overflow-x-auto">
-                <div className="flex flex-col gap-3 items-start sm:flex-row sm:justify-end sm:items-center pb-4">
-                    <Searchbar setState={setSearchValue} state={searchValue} />
-                    <SortDropdown state={sortFilter} setState={setSortFilter} />
-                </div>
-                <Table
-                    data={filteredAndSortedData}
-                    setSearchValue={setSearchValue}
-                />
-                <PoweredBy />
-            </Card>
+                    <PoweredBy />
+                </Card>
+            </div>
         </div>
     )
 }
 
-export const getStaticProps: GetStaticProps<IProps> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<IProps> = async () => {
     const coinData = await fetchCoinData()
 
     const getAvgRoi = (

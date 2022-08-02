@@ -1,1 +1,1 @@
-💸 Return-On-Investment (ROI) tracker of the Seedify launchpad
+💸 Return-On-Investment (ROI) tracker of the Maiar launchpad
