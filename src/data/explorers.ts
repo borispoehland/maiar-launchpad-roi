@@ -33,7 +33,7 @@ export const getExplorers = (
         },
         'elrond-egld': {
             logoPathName: 'elrondexplorer_logo.png',
-            explorerUrl: `https://explorer.elrond.com/token/${contractAddress}`,
+            explorerUrl: `https://explorer.elrond.com/tokens/${contractAddress}`,
         },
     }
 }

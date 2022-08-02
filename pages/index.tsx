@@ -53,7 +53,7 @@ const Home = ({ coinData, currentAvgRoi, athAvgRoi, igosCount }: IProps) => {
                 <Card>
                     <div className="flex gap-2 items-center mb-4">
                         <Image
-                            src="/img/explorer-logos/elrondexplorer_logo.png"
+                            src="/img/elrond_logo.png"
                             width="50"
                             height="50"
                             className="rounded-full"
