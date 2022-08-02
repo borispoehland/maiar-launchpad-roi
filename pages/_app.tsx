@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                     description: 'Track the ROI of Maiar Launchpad IDOs',
                     images: [
                         {
-                            url: `${host}/img/opengraph.png`,
+                            url: `${host}/img/opengraph_new.png`,
                             width: 1200,
                             height: 630,
                             alt: 'Banner of the Maiar Launchpad ROI Tracker',
